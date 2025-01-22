@@ -16,13 +16,7 @@
             <button id="add-btn" class="bg-green-600 px-4 border border-white text-3xl font-bold py-1">ADD</button>
         </div>
         <div class="flex flex-col gap-4 bg-slate-300 w-full mt-4 p-4" id="task-list">
-            <div class="flex justify-between align-center px-4 bg-gray-500 py-2">
-                <h1 class="text-3xl flex-1 ps-2">TASK</h1>
-                <div class="flex gap-4">
-                    <button class="bg-blue-500 px-4 border border-white text-2xl ">EDIT</button>
-                    <button class="bg-red-500 px-4 border border-white text-2xl ">DEL</button>
-                </div>
-            </div>
+
         </div>
     </div>
     <script>
@@ -39,6 +33,8 @@
                 }
                 //send the task to express server
                 sendTaskToServer(task)
+                //remove the input
+                inputTag.value = ""
             } else {
                 alert("Write Your Task Before Adding")
             }
@@ -53,7 +49,31 @@
             })
             const data = await response.json()
             console.log(data);
+            displayTasks(data)
         }
+
+        //displaying the tasks
+        function displayTasks(tasks) {
+            let str = ""
+            tasks.forEach(task => {
+                str += `
+                <div class="flex justify-between align-center px-4 bg-gray-500 py-2">
+                <h1 class="text-3xl flex-1 ps-2">${task.text}</h1>
+                <div class="flex gap-4">
+                    <button class="bg-blue-500 px-4 border border-white text-2xl ">EDIT</button>
+                    <button class="bg-red-500 px-4 border border-white text-2xl ">DEL</button>
+                </div>
+            </div>`
+            })
+            taskContainer.innerHTML = str
+        }
+
+        window.addEventListener("load", async () => {
+            fetch("/todo/get")
+                .then(response => response.json())
+                .then(data => displayTasks(data))
+                .catch(err => console.log(err))
+        })
     </script>
 </body>
 

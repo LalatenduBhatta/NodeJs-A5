@@ -19,6 +19,11 @@ app.post("/todo/add", (req, res) => {
     res.status(201).send(todos)
 })
 
+app.get("/todo/get", (req, res) => {
+    const todos = JSON.parse(fs.readFileSync("./public/todos.json", "utf-8"))
+    res.status(200).send(todos)
+})
+
 
 app.listen(4000, "localhost", () => {
     console.log("server is running on http://localhost:4000")
