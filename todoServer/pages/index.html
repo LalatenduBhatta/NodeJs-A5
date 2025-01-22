@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">TO_DO LIST</h1>
+
+    <div align="center">
+        <input type="text" id="task" placeholder="write your task...">
+        <button id="add">ADD</button>
+    </div>
+
+    <div class="list">
+
+    </div>
+
+    <script>
+        let inputTag = document.getElementById("task")
+        let addBtn = document.getElementById("add")
+
+        addBtn.addEventListener("click", () => {
+            let task = inputTag.value.trim()
+            if (task) {
+                fetch("/addtask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ task })
+                }).then(res => res.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.log(error))
+            }
+            else {
+                alert("write some task before adding")
+            }
+        })
+    </script>
+</body>
+
+</html>

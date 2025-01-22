@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    display: flex;
+    width: 100%;
+    background-color: rgb(99, 97, 97);
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    height: 7vh;
+}
+nav .logo{
+    text-transform: uppercase;
+    font-size: 30px;
+    color: red;
+}
+nav .links{
+    width: 50%;
+    display: flex;
+    justify-content:space-evenly;
+}
+nav .links a{
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+}
+nav .links a:hover{
+    color: orange;
+}
+nav .login a{
+    text-decoration: none;
+}
+nav .login a button{
+    cursor: pointer;
+    padding: 10px 20px;
+    color: white;
+    background-color: blue;
+}
+nav .login a button:hover{
+    color: blue;
+    background-color: white;
+    border: 1px soild blue;
+}

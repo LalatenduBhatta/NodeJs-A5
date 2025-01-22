@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: gray;
+    color: white;
+}
+h1{
+    height: 100px;
+    background-color: blue;
+}
+a{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,12 @@
+h1{
+    background-color: brown;
+    color: white;
+}
+p{
+    color: red;
+}
+p::first-letter{
+    font-size: 50px;
+    font-weight:bold;
+    color: green;
+}

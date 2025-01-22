@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--css links -->
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+<body>
+    <nav>
+        <!-- LOGO -->
+        <div class="logo">
+            <h1>MY APP</h1>
+        </div>
+        <!-- Links -->
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <!-- Login -->
+        <div class="login">
+            <a href="/login"><button>Login</button></a>
+        </div>
+    </nav>
+    <h2>HOME PAGE</h2>
+
+    <button id="send">Send DATA</button>
+    <button id="get">GET DATA</button>
+
+    <script>
+        let getBtn = document.getElementById("get")
+        let sendBtn = document.getElementById("send")
+
+        getBtn.addEventListener("click", (event) => {
+            //send a request to node server (fetch)
+            fetch("/getdata")
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
+        })
+
+        sendBtn.addEventListener("click", () => {
+            //send a data in post method to node server
+            let student = { name: "Krish", age: 25, address: "Himalaya" }
+
+            fetch("/sendData", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(student)
+            }).then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.log(error))
+        })
+    </script>
+
+</body>
+
+</html>

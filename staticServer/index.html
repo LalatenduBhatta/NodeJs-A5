@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>THIS IS HOME PAGE</h1>
+
+    <img src="blue-flower.jpg" alt="" height="300px" width="400px">
+
+    <a href="pages/about.html">ABOUT</a>
+
+    <button id="send">Send Data</button>
+    <button id="get">Get Data</button>
+
+    <form action="/urlData" method="post"> <!---POST METHOD WITH /urlData path -->
+        <label for="name">Name :</label>
+        <input type="text" id="name" name="name"> <br> <!--name attribute for key of each input-->
+        <label for="password">Password :</label>
+        <input type="password" id="password" name="password"> <br> <!--name attribute for key of each input-->
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        let getBtn = document.getElementById("get")
+        let sendBtn = document.getElementById("send")
+
+        getBtn.addEventListener("click", () => {
+            //we want something from server
+            fetch("/data").then(res => res.json()) //default GET method
+                .then(data => console.log(data))
+                .catch(console.log)
+        })
+
+        sendBtn.addEventListener("click", async () => { //async function
+            let myData = { msg: "Hello from client" }
+            let response = await fetch("/data", {
+                method: "POST", //http method
+                headers: { "Content-Type": "application/json" }, //additional info
+                body: JSON.stringify(myData)  //request payload
+            })
+            let data = await response.json() //server response data
+            console.log(data);
+        })
+    </script>
+</body>
+
+</html>

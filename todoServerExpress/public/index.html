@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="h-screen bg-slate-500 text-white">
+        <h1 class="text-3xl text-center">TODO LIST IN EXPRESS</h1>
+        <div class="flex h-20 mt-5 bg-slate-400 items-center gap-4 px-5">
+            <input type="text" id="task" class="flex-1 text-4xl text-black" placeholder="Enter Your Task .....">
+            <button id="add-btn" class="bg-green-600 px-4 border border-white text-3xl font-bold py-1">ADD</button>
+        </div>
+        <div class="flex flex-col gap-4 bg-slate-300 w-full mt-4 p-4" id="task-list">
+            <div class="flex justify-between align-center px-4 bg-gray-500 py-2">
+                <h1 class="text-3xl flex-1 ps-2">TASK</h1>
+                <div class="flex gap-4">
+                    <button class="bg-blue-500 px-4 border border-white text-2xl ">EDIT</button>
+                    <button class="bg-red-500 px-4 border border-white text-2xl ">DEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const inputTag = document.getElementById("task")
+        const addBtn = document.getElementById("add-btn")
+        const taskContainer = document.querySelector("#task-list")
+
+        addBtn.addEventListener("click", () => {
+            const text = inputTag.value
+            if (text) {
+                const task = {
+                    text,
+                    id: Math.floor(Math.random() * 10000)
+                }
+                //send the task to express server
+                sendTaskToServer(task)
+            } else {
+                alert("Write Your Task Before Adding")
+            }
+        })
+
+        //reuse the function to send the task to server 
+        async function sendTaskToServer(task) {
+            const response = await fetch("/todo/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(task)
+            })
+            const data = await response.json()
+            console.log(data);
+        }
+    </script>
+</body>
+
+</html>
