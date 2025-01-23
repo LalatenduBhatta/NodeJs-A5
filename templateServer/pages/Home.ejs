@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>THIS IS A DYNAMNIC HTML</h1>
+
+    <!-- using the properties(variables) coming from server data -->
+    <h2>
+        NAME : <%=name %>
+    </h2>
+    <h2>
+        AGE : <%=age %>
+    </h2>
+    <h2>
+        ADDRESS : <%=address %>
+    </h2>
+
+    <!-- Conditions -->
+    <% if(age>=18){%>
+        <mark>
+            <%=name %> is eligible to vote
+        </mark>
+        <%}%>
+
+            <!-- Loops -->
+            <% for(let i=1;i<=5;i++){%>
+                <div>
+                    <%= i%>
+                </div>
+                <%}%>
+                    <!-- methods -->
+                    <h1>
+                        reverse of name :
+                        <%=name.split("").reverse().join("")%>
+                    </h1>
+</body>
+
+</html>
