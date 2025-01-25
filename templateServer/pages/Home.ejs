@@ -8,37 +8,35 @@
 </head>
 
 <body>
-    <h1>THIS IS A DYNAMNIC HTML</h1>
+    <!-- partials -->
+    <%- include("partials/Header.ejs") %>
 
-    <!-- using the properties(variables) coming from server data -->
-    <h2>
-        NAME : <%=name %>
-    </h2>
-    <h2>
-        AGE : <%=age %>
-    </h2>
-    <h2>
-        ADDRESS : <%=address %>
-    </h2>
+        <!-- using the properties(variables) coming from server data -->
+        <h2>
+            NAME : <%=name %>
+        </h2>
 
-    <!-- Conditions -->
-    <% if(age>=18){%>
-        <mark>
-            <%=name %> is eligible to vote
-        </mark>
-        <%}%>
+        <!-- Conditions -->
+        <% if(age>=18){%>
+            <mark>
+                <%=name %> is eligible to vote
+            </mark>
+            <%}%>
 
-            <!-- Loops -->
-            <% for(let i=1;i<=5;i++){%>
-                <div>
-                    <%= i%>
-                </div>
-                <%}%>
-                    <!-- methods -->
-                    <h1>
-                        reverse of name :
-                        <%=name.split("").reverse().join("")%>
-                    </h1>
+                <!-- Loops -->
+                <% for(let i=1;i<=5;i++){%>
+                    <div>
+                        <%= i%>
+                    </div>
+                    <%}%>
+                        <!-- methods -->
+                        <h1>
+                            reverse of name :
+                            <%=name.split("").reverse().join("")%>
+                        </h1>
+                        <!-- Navigate -->
+                        <a href="/about">About</a> <br>
+                        <a href="/login">Login</a>
 </body>
 
 </html>
